@@ -3,7 +3,7 @@
 You can get the IFS trace data for a projection call by adding the query parameter `odata-debug`.
 This will add the trace information in `ifs-trace` node of the response message. Since the trace data is in JSON format, it's hard to interpert the information using tools like Postman.
 
-[Postman Visualizer](https://learning.postman.com/docs/sending-requests/visualizer/) is a good tool where you can visually represent the request responses. This project intebd to build a visualizer for representing IFS trace information in readable format in Postman.
+[Postman Visualizer](https://learning.postman.com/docs/sending-requests/visualizer/) is a good tool where you can visually represent the request responses. Here you can find a visualizer script for representing IFS trace information in readable format in Postman.
 
 ### How to Use
 - [x] Create a new Postman Collection
