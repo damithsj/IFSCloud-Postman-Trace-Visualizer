@@ -21,4 +21,4 @@ Eg: `{{ifs_url}}/main/ifsapplications/projection/v1/YOUR_PROJECTION_CALL?odata-d
 - **Filter based on log level** - You can filter messages based on category (TRACE, INFORMATION, DEBUG)
 
 ### Contribute
-There are many response visualization possibilities with Postman. Tryout your own and create an issue if you would like it to be published! 
+There are many response visualization possibilities with Postman. Tryout your own and/or create an [issue](https://github.com/damithsj/IFSCloud-Postman-Trace-Visualizer/issues) if you would like it to be published! 
