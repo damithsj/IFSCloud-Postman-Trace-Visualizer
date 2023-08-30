@@ -12,10 +12,9 @@ var template = `
         });
     });
     });
-  </script>
-<script>
+
 function searhByLevel() {
-  var input, table, tr, td, i, txtValue;
+  var input, table, tr, td, i, j, txtValue;
   const filter = [];
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
@@ -45,15 +44,45 @@ function searhByLevel() {
         }       
     }
 }
+
+function indentToggle() {
+  var td, indent, i, tdTxt, tdTxtTmp, spaces;
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+      if (document.getElementById('flexSwitchCheckIndent').checked) {
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[4];
+            if (td) {
+                indent = td.textContent || td.innerText || 0;
+                tdTxt = tr[i].getElementsByTagName("td")[3];
+                tdTxtTmp = tr[i].getElementsByTagName("td")[5];
+                spaces = "";
+                for (j = 0; j < indent; j++) {
+                    spaces = spaces + '\u00a0' + '\u00a0' + '\u00a0';
+                }
+                tdTxt.innerText = spaces.concat(tdTxtTmp.innerText);
+                tdTxt.innerHTML = '<small>' + spaces.concat(tdTxtTmp.innerText) + '</small>';
+            }
+        }
+    }
+    else{
+        for (i = 0; i < tr.length; i++) {
+            tdTxt = tr[i].getElementsByTagName("td")[3];
+            tdTxtTmp = tr[i].getElementsByTagName("td")[5];
+            tdTxt.innerText = tdTxtTmp.innerText;
+            tdTxt.innerHTML = '<small>' + tdTxtTmp.innerText + '</small>';
+        }
+    }
+}
 </script>
 <div class="container-fluid"><!--========FILTER=======-->    
     <div class="w-25 m-3 row">
-        <div class="col">
+        <div class="w-25 col">
             <input class="form-control" id="myInput" type="text" placeholder="Search..">
         </div>
     </div>
-    <div class="m-3 row">
-        <div class="col">
+    <div class="w-25 m-3 row">
+        <div class="w-25 col">
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckInfo" onchange="searhByLevel()" checked>
                 <label class="form-check-label" for="flexSwitchCheckInfo">Info</label>
@@ -69,6 +98,12 @@ function searhByLevel() {
                 <label class="form-check-label" for="flexSwitchCheckDebug">Debug</label>
             </div>
         </div>
+        <div class="w-25 col">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckIndent" onchange="indentToggle()">
+                <label class="form-check-label" for="flexSwitchCheckIndent">Indent</label>
+            </div>        
+        </div>
     </div>
 </div>
 <div>
@@ -78,7 +113,7 @@ function searhByLevel() {
                 <th>Origin</th>
                 <th>Category</th>
                 <th>Level</th>
-                <th>Text</th>            
+                <th>Text</th>
             </tr>
         </thead>
         <tbody id="myTable">
@@ -88,6 +123,8 @@ function searhByLevel() {
                 <td><small>{{category}}</small></td>                    
                 <td><small>{{level}}</small></td>
                 <td><small>{{text}}</small></td>
+                <td style="display:none;"><small>{{indentation}}</small></td>
+                <td style="display:none;"><small>{{text}}</small></td>
             </tr>
         {{/each}}
         </tbody>
